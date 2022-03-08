@@ -22,14 +22,12 @@ export class UserBookController {
     }
 
     async return(request: Request, response: Response, next: NextFunction) {
-        const user = await this.userRepository.findOne(request.params.userId);
-        const book = await this.bookRepository.findOne(request.params.bookId);
-
         return await getConnection()
         .createQueryBuilder()
         .update(UserBook)
         .set({score: request.body.score})
         .where("userId = :userId", { userId: request.params.userId })
+        .andWhere("bookId = :bookId", { bookId: request.params.bookId })
         .execute();
     }
 

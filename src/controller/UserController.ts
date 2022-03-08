@@ -21,8 +21,8 @@ export class UserController {
         let present = []
         let past = []
 
-        userbooks.map(x => {
-            x.score === null ? present.push(x.book) : past.push({ ...x.book, score: x.score })
+        userbooks.map(ub => {
+            ub.score === null ? present.push(ub.book) : past.push({ ...ub.book, score: ub.score })
         })
 
         return {

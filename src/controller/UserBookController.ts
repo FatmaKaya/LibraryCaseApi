@@ -1,4 +1,4 @@
-import { getRepository } from "typeorm";
+import { getRepository, getConnection } from "typeorm";
 import { NextFunction, Request, Response } from "express";
 import { UserBook } from './../entity/UserBook';
 import { User } from './../entity/User';
@@ -25,12 +25,12 @@ export class UserBookController {
         const user = await this.userRepository.findOne(request.params.userId);
         const book = await this.bookRepository.findOne(request.params.bookId);
 
-        const userBook = new UserBook();
-        userBook.score = request.body.score;
-        userBook.user = user;
-        userBook.book = book;
-
-        return this.userBookRepository.save(userBook);
+        return await getConnection()
+        .createQueryBuilder()
+        .update(UserBook)
+        .set({score: request.body.score})
+        .where("userId = :userId", { userId: request.params.userId })
+        .execute();
     }
 
 }

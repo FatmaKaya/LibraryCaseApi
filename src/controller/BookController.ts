@@ -6,7 +6,6 @@ export class BookController {
     private bookRepository = getRepository(Book);
     private userBookRepository = getRepository(UserBook);
 
-
     async all(request: Request, response: Response, next: NextFunction) {
         return this.bookRepository.find();
     }
@@ -25,7 +24,6 @@ export class BookController {
         })
         let avg = sum / userbooks.length
 
-        console.log(userbooks)
         return { ...book, score: avg }
     }
 

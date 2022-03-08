@@ -8,7 +8,9 @@ export class UserBook {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({
+        nullable: true,
+    })
     score: number;
 
     @ManyToOne(type => User, user => user.userBook, { primary: true })

@@ -54,4 +54,10 @@ export const Routes = [
         controller: UserBookController,
         action: "return"
     },
+    {
+        method: "post",
+        route: "/users/:userId/borrow/:bookId",
+        controller: UserBookController,
+        action: "borrow"
+    },
 ];

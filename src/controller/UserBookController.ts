@@ -10,6 +10,16 @@ export class UserBookController {
     private userRepository = getRepository(User);
     private bookRepository = getRepository(Book);
 
+    async borrow(request: Request, response: Response, next: NextFunction) {
+        const user = await this.userRepository.findOne(request.params.userId);
+        const book = await this.bookRepository.findOne(request.params.bookId);
+
+        const userBook = new UserBook();
+        userBook.user = user;
+        userBook.book = book;
+
+        return this.userBookRepository.save(userBook);
+    }
 
     async return(request: Request, response: Response, next: NextFunction) {
         const user = await this.userRepository.findOne(request.params.userId);
@@ -17,9 +27,9 @@ export class UserBookController {
 
         const userBook = new UserBook();
         userBook.score = request.body.score;
-        userBook.user=user;
-        userBook.book= book;
-        
+        userBook.user = user;
+        userBook.book = book;
+
         return this.userBookRepository.save(userBook);
     }
 

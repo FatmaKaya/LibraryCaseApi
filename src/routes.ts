@@ -1,5 +1,6 @@
 import { UserController } from "./controller/UserController";
 import { BookController } from "./controller/BookController";
+import { UserBookController } from "./controller/UserBookController";
 
 export const Routes = [
     //Users
@@ -45,4 +46,12 @@ export const Routes = [
         route: "/books/:id",
         controller: BookController,
         action: "remove"
-    }];
+    },
+    // UserBook
+    {
+        method: "post",
+        route: "/users/:userId/return/:bookId",
+        controller: UserBookController,
+        action: "return"
+    },
+];

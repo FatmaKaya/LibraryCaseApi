@@ -22,5 +22,4 @@ export class UserController {
         let userToRemove = await this.userRepository.findOne(request.params.id);
         await this.userRepository.remove(userToRemove);
     }
-
 }

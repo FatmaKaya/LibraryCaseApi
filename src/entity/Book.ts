@@ -8,9 +8,4 @@ export class Book {
 
     @Column()
     name: string;
-
-    @Column({
-        nullable: true,
-    })
-    score: number;
 }

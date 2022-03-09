@@ -7,33 +7,47 @@ export class BookController {
     private userBookRepository = getRepository(UserBook);
 
     async all(request: Request, response: Response, next: NextFunction) {
-        return this.bookRepository.find();
-    }
-
-    async one(request: Request, response: Response, next: NextFunction) {
-        let book = await this.bookRepository.findOne(request.params.id);
-
-        const userbooks = await this.userBookRepository.find({
-            relations: ['user', 'book'],
-            where: { book: { id: request.params.id }, score: Not(IsNull()) },
+        return this.bookRepository.find().then((books) => {
+            response.status(200).send(books);
+        }).catch((error) => {
+            next(error);
         });
+    }
+    
+    async one(request: Request, response: Response, next: NextFunction) {
+        await this.bookRepository.findOne(request.params.id).then(async (book) => {
+            if (book) {
+                const userbooks = await this.userBookRepository.find({
+                    relations: ['user', 'book'],
+                    where: { book: { id: request.params.id }, score: Not(IsNull()) },
+                });
 
-        let sum = 0;
-        userbooks.map(ub => {
-            sum = sum + ub.score
-        })
-        let avg = sum / userbooks.length
+                let sum = 0;
+                userbooks.map(ub => {
+                    sum = sum + ub.score
+                })
+                let avg = sum / userbooks.length
 
-        return { ...book, score: avg }
+                response.status(200).send({ ...book, score: avg });
+            }
+            else
+                response.status(404).send({ error: 'Book not found' });
+    
+        }).catch((error) => {
+            next(error);
+        });
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        return this.bookRepository.save(request.body);
+        return this.bookRepository.save(request.body).then((book) => {
+            response.status(200).send(book);
+        }).catch((error) => {
+            next(error);
+        });
     }
 
     async remove(request: Request, response: Response, next: NextFunction) {
         let bookToRemove = await this.bookRepository.findOne(request.params.id);
         await this.bookRepository.remove(bookToRemove);
     }
-
 }

@@ -47,8 +47,8 @@ export class UserController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        await this.userRepository.save(request.body).then((users)=>{
-            response.status(200).send(users);
+        await this.userRepository.save(request.body).then((user)=>{
+            response.status(200).send(user);
         }).catch((error)=>{
             next(error);
         });

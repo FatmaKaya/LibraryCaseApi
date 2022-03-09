@@ -14,6 +14,13 @@ aldığı kitaplar)
 - Kitap ödünç alma
 - Kitap teslim etme ve değerlendirme puanı verme
 
+Kullanılan Teknolojiler
+- TypeScript  
+- Express.js
+- TypeORM 
+- MySQL 
+- TypeScript Express
+
 #### Çalıştırma
 Paketilerin kurulumu ve uygulama çalıştırılması:
 
@@ -80,8 +87,8 @@ npm start
 ```
 
 #### Kaynak 
-- [TypeORM](https://typeorm.io/#/) - Proje oluşturulma aşamaları
-- [TypeORM - Relations](https://typeorm.io/#/many-to-one-one-to-many-relations) - Many to One - One to Many İlişki kulumları
+- [TypeORM](https://typeorm.io/#/) - Proje oluşturma aşamaları
+- [TypeORM - Relations](https://typeorm.io/#/many-to-one-one-to-many-relations) - Many to One - One to Many İlişki oluşturma aşamaları
 - [TypeScript Express Tutorial](https://wanago.io/2018/12/17/typescript-express-error-handling-validation/) - Error handling ve validasyon işlemleri
 
 

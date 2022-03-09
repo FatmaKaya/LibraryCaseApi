@@ -21,7 +21,7 @@ Kullanılan Teknolojiler
 - MySQL 
 - TypeScript Express
 
-#### Çalıştırma
+#### İndirilen Projenin Çalıştırılması
 Paketilerin kurulumu ve uygulama çalıştırılması:
 
 ```sh
@@ -31,7 +31,7 @@ npm install
 npm start
 ```
 
-#### Proje Oluşturulma Aşamaları
+#### Sıfırdan Proje Oluşturulma Aşamaları
 
 npm paketlerinin indirilmesi
 ```sh

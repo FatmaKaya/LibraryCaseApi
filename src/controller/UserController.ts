@@ -7,9 +7,9 @@ export class UserController {
     private userBookRepository = getRepository(UserBook);
 
     async all(request: Request, response: Response, next: NextFunction) {
-        await this.userRepository.find().then((users)=>{
+        await this.userRepository.find().then((users) => {
             response.status(200).send(users);
-        }).catch((error)=>{
+        }).catch((error) => {
             next(error);
         });
     }
@@ -38,7 +38,7 @@ export class UserController {
                 });
             }
             else
-                response.status(404).send({ error: 'User not found' });
+                response.status(404).send({ status: false, error: 'User not found' });
 
         }).catch((error) => {
             next(error);
@@ -47,9 +47,9 @@ export class UserController {
     }
 
     async save(request: Request, response: Response, next: NextFunction) {
-        await this.userRepository.save(request.body).then((user)=>{
+        await this.userRepository.save(request.body).then((user) => {
             response.status(200).send(user);
-        }).catch((error)=>{
+        }).catch((error) => {
             next(error);
         });
     }

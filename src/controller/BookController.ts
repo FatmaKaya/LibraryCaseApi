@@ -13,7 +13,7 @@ export class BookController {
             next(error);
         });
     }
-    
+
     async one(request: Request, response: Response, next: NextFunction) {
         await this.bookRepository.findOne(request.params.id).then(async (book) => {
             if (book) {
@@ -31,8 +31,8 @@ export class BookController {
                 response.status(200).send({ ...book, score: avg });
             }
             else
-                response.status(404).send({ error: 'Book not found' });
-    
+                response.status(404).send({ status: false, error: 'Book not found' });
+
         }).catch((error) => {
             next(error);
         });

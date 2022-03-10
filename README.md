@@ -22,6 +22,9 @@ Kullanılan Teknolojiler
 - TypeScript Express
 
 #### İndirilen Projenin Çalıştırılması
+
+[Database script - Postman Collection](https://github.com/FatmaKaya/LibraryCaseApi/tree/main/sql-postman) 
+
 Paketilerin kurulumu ve uygulama çalıştırılması:
 
 ```sh

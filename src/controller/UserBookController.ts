@@ -14,8 +14,7 @@ export class UserBookController {
         if (user && book) {
             let userBooks = await getRepository(UserBook)
                 .createQueryBuilder('userBook')
-                .where("userId = :userId", { userId: request.params.userId })
-                .andWhere("bookId = :bookId", { bookId: request.params.bookId })
+                .where("bookId = :bookId", { bookId: request.params.bookId })
                 .andWhere("userBook.score IS NULL")
                 .getMany();
 
